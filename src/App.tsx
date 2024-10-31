@@ -1,6 +1,6 @@
 import "./App.css";
 import { VirtualList } from "./ui/VirtualList";
-import { arrayFilter, arrayMap, arrayReduce } from "./utils/array";
+
 function App() {
   // Генерируем тестовые данные
   const items = Array.from({ length: 10000 }, (_, index) => ({
@@ -22,13 +22,7 @@ function App() {
       {item.text}
     </div>
   );
-  console.log(
-    arrayMap([1, 2, 3, 4], (item: number, index: number) => item + index)
-  );
-  console.log(
-    arrayReduce([1, 2, 3, 4], (acc: number, item: number) => (acc += item), 0)
-  );
-  console.log(arrayFilter([1, 2, 3, 4], (item: number) => item % 2 === 0));
+
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <h1>Virtual List Demo</h1>

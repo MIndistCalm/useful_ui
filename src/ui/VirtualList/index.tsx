@@ -8,7 +8,6 @@ interface VirtualListProps<T> {
   overscan?: number; // Дополнительные элементы сверху и снизу
 }
 
-// Примерная структура компонента
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export const VirtualList = <T extends unknown>({
   items,

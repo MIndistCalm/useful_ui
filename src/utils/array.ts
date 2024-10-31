@@ -72,7 +72,7 @@ export const arrayFindIndex = <T>(
     }
   }
 };
-
+// forEach o(n)
 export const arrayForEach = <T>(
   arr: T[],
   callback: (item: T, index?: number) => void
@@ -83,7 +83,7 @@ export const arrayForEach = <T>(
     callback(arr[i], i);
   }
 };
-
+// some o(n)
 export const arraySome = <T>(
   arr: T[],
   callback: (item: T, index?: number) => boolean
@@ -98,7 +98,7 @@ export const arraySome = <T>(
 
   return false;
 };
-
+// every o(n)
 export const arrayEvery = <T>(
   arr: T[],
   callback: (item: T, index?: number) => boolean
@@ -110,4 +110,39 @@ export const arrayEvery = <T>(
     }
   }
   return true;
+};
+// o(n*n)
+export const removeDuplicates = <T>(arr: T[]) => {
+  if (!Array.isArray(arr)) return;
+
+  const result: T[] = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {
+      result.push(arr[i]);
+    }
+  }
+};
+// o(n)
+export const removeDuplicates2 = <T>(arr: T[]) => {
+  if (!Array.isArray(arr)) return;
+
+  return [...new Set(arr)];
+};
+
+// o(n)
+export const removeDuplicates3 = <T extends string | number | symbol>(
+  arr: T[]
+) => {
+  if (!Array.isArray(arr)) return;
+
+  const mapa = {} as Record<T, boolean>;
+
+  return arr.reduce((acc, cur) => {
+    if (!mapa[cur]) {
+      mapa[cur] = true;
+      acc.push(cur);
+    }
+    return acc;
+  }, [] as T[]);
 };
