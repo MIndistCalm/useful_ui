@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 interface VirtualListProps<T> {
   items: T[]; // массив данных
@@ -53,19 +53,19 @@ export const VirtualList = <T extends unknown>({
       onScroll={handleScroll}
       style={{
         height: containerHeight,
-        overflow: "auto",
-        position: "relative",
+        overflow: 'auto',
+        position: 'relative',
       }}
     >
       <div
         style={{
           height: totalHeight,
-          position: "relative",
+          position: 'relative',
         }}
       >
         <div
           style={{
-            position: "absolute",
+            position: 'absolute',
             top: startIndex * itemHeight,
             left: 0,
             right: 0,

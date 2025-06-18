@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,12 +13,60 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: none;
+}
+input[type='checkbox'] + label,
+input[type='radio'] + label {
+  font: 18px bold;
+  color: #444;
+  cursor: pointer;
+}
+input[type='checkbox'] + label::before,
+input[type='radio'] + label::before {
+  content: '';
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  margin: 0 5px 0 0;
+  background-color: red;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+}
+input[type='checkbox'] + label::before {
+  background-position: -38px -260px;
+}
+input[type='radio'] + label::before {
+  background-position: 0px -279px;
+}
+input[type='checkbox']:checked + label::before {
+  background-position: -114px -250px;
+}
+input[type='radio']:checked + label::before {
+  background-position: -108px -279px;
+}
+input[type='checkbox']:disabled + label::before {
+  background-position: -152px -260px;
+}
+input[type='checkbox']:checked:disabled + label::before {
+  background-position: -171px -260px;
+}
+input[type='radio']:disabled + label::before {
+  background-position: -144px -279px;
+}
+input[type='radio']:checked:disabled + label::before {
+  background-position: -162px -279px;
 }
