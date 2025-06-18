@@ -14,59 +14,21 @@ import { ColoredScreenWrapper } from './ui/ColoredScreenWrapper';
 import { HModal } from './ui/HModal';
 import { VirtualList } from './ui/VirtualList';
 import { Navigation } from './ui/Navigation';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { clearClassName } from './utils';
 import { Section } from './models';
+import { useSectionScroll } from './shared/hooks/useSectionScroll';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState<Section>(
-    Section.virtualList
-  );
   const sections = [Section.virtualList, Section.modal];
-  const isScrolling = useRef(false);
-
-  const scrollToSection = (id: Section) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setCurrentSection(id);
-    }
-  };
-
-  const handleWheel = (event: WheelEvent) => {
-    if (isScrolling.current) return;
-
-    const currentIndex = sections.indexOf(currentSection);
-    if (currentIndex === -1) return;
-
-    isScrolling.current = true;
-
-    if (event.deltaY > 0 && currentIndex < sections.length - 1) {
-      // Прокрутка вниз
-      scrollToSection(sections[currentIndex + 1]);
-    } else if (event.deltaY < 0 && currentIndex > 0) {
-      // Прокрутка вверх
-      scrollToSection(sections[currentIndex - 1]);
-    }
-
-    setTimeout(() => {
-      isScrolling.current = false;
-    }, 200); // Задержка между прокрутками
-  };
-
-  useEffect(() => {
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [currentSection]);
+  const { currentSection, scrollToSection } = useSectionScroll(sections);
 
   // Генерируем тестовые данные
   const items = Array.from({ length: 10000 }, (_, index) => ({
     id: index,
     text: `Item ${index}`,
-    height: 50, // фиксированная высота для примера
+    height: 50,
   }));
 
   // Функция рендера элемента
