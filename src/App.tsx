@@ -23,7 +23,7 @@ function App() {
   const [currentSection, setCurrentSection] = useState<Section>(
     Section.virtualList
   );
-  const sections = [Section.virtualList, Section.modal, Section.customCheckbox];
+  const sections = [Section.virtualList, Section.modal];
   const isScrolling = useRef(false);
 
   const scrollToSection = (id: Section) => {
@@ -167,10 +167,6 @@ function App() {
             </Field>
           </Fieldset>
         </HModal>
-      </ColoredScreenWrapper>
-      <ColoredScreenWrapper title="Custom checkbox" id={Section.customCheckbox}>
-        <input id="checkbox" name="checkbox" type="radio" checked hidden />
-        <label htmlFor="checkbox">Checkbox</label>
       </ColoredScreenWrapper>
     </div>
   );
